@@ -1,10 +1,10 @@
-package com.example.homework13februar;
+package com.example.homework6februar;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Homework13FebruarApplicationTests {
+class Homework6FebruarApplicationTests {
 
     @Test
     void contextLoads() {
