@@ -1,6 +1,8 @@
 package service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -38,8 +40,8 @@ public class FileService {
                 return new HashMap<>();
             }
             return objectMapper.readValue(json, typeReference);
-        } catch (NoSuchFieldException e) {
-            throw new RuntimeException(e);
+        } catch (JsonMappingException e) {
+            return new HashMap<>();
         }
     }
 
@@ -51,7 +53,7 @@ public class FileService {
                 InputStream is = file.getInputStream();
                 OutputStream os = Files.newOutputStream(filePath, CREATE_NEW);
                 BufferedInputStream bis = new BufferedInputStream(is, 1024);
-                BufferredOutputStream bos = new BufferedOutputStream(os,1024);
+                BufferedOutputStream bos = new BufferedOutputStream(os,1024);
         ) {
             bis.transferTo(bos);
         }

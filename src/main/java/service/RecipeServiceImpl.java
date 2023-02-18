@@ -22,6 +22,11 @@ public class RecipeServiceImpl implements RecipeService {
     private Map<Long, Recipe> recipes = new HashMap<>();
     private final ValidationService validationService;
     private Path recipesPath;
+    private FileService fileService;
+    private String recipesFilePath;
+    private String recipesFileName;
+
+
 
     public RecipeServiceImpl(ValidationService validationService) {
         this.validationService = validationService;

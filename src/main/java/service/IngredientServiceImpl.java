@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -21,6 +22,12 @@ public class IngredientServiceImpl implements IngredientService {
     private static long idCounter = 1;
     private Map<Long, Ingredient> ingredients = new HashMap<>();
     private final ValidationService validationService;
+    private Path ingredientPath;
+    private FileService fileService;
+    private String ingredientsFilePath;
+    private String ingredientsFileName;
+
+
 
     public IngredientServiceImpl(ValidationService validationService) {
         this.validationService = validationService;

@@ -1,5 +1,7 @@
 package controller;
 
+import annotation.Operation;
+import annotation.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -13,23 +15,22 @@ import service.RecipeService;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
+
 
 @RestController
 @RequestMapping("/files")
-@Tag(name = "Api для работы с файлами рецептов,ингридиентов", deskription = "Загркузка/Выгрузка рецептов и ингр.")
+@Tag(name = "Api для работы с файлами рецептов,ингридиентов", description = "Загркузка/Выгрузка рецептов и ингр.")
 @RequiredArgsConstructor
-
 public class FileController {
 
     private final RecipeService recipeService;
-    private final IngredientService
+    private final IngredientService ingredientService;
+
 
     @GetMapping("/recipe/export")
     @Operation(
-            summary = "выгрузка файлов рецептов")
-
-
+            summary = "выгрузка файлов рецептов"
+    )
     public ResponseEntity<InputStreamResource> downloadRecipesFiles() {
         try {
             File recipeFile = recipeService.readFile();
@@ -58,7 +59,7 @@ public class FileController {
             return ResponseEntity.ok("Файл успешно импортирован");
         } catch (IOException e) {
             e.printStackTrace();
-            return ResponseEntity.badRequest().body("Ошибка при загрузке файла.Проверьте корректность файла")
+            return ResponseEntity.badRequest().body("Ошибка при загрузке файла.Проверьте корректность файла");
         }
     }
     @PostMapping(value = "/ingredient/import", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -71,7 +72,7 @@ public class FileController {
             return ResponseEntity.ok("Файл успешно импортирован");
         } catch (IOException e) {
             e.printStackTrace();
-            return ResponseEntity.badRequest().body("Ошибка при загрузке файла.Проверьте корректность файла")
+            return ResponseEntity.badRequest().body("Ошибка при загрузке файла.Проверьте корректность файла");
         }
     }
 }
