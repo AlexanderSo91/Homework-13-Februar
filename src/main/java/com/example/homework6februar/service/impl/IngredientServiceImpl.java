@@ -81,7 +81,7 @@ public class IngredientServiceImpl implements IngredientService {
     @PostConstruct
     private void init(){
         ingredientPath = Path.of(ingredientsFilePath, ingredientsFileName);
-        ingredients = fileService.readMapFromFile(ingredients, new TypeReference<HashMap<Long,ingredient>>(){});
+        ingredients = fileService.readMapFromFile(ingredientPath, new TypeReference<HashMap<Long, Ingredient>>() {});
 
 
     }

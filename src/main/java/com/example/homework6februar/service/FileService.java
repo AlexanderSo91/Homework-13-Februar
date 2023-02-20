@@ -1,6 +1,5 @@
 package com.example.homework6februar.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,7 +31,7 @@ public class FileService {
         }
     }
 
-    public <T> Map<Long,T> readMapFromFile (Path path, TypeReference<HashMap<Long,T>> typeReference) {
+    public <T> HashMap<Long, T> readMapFromFile (Path path, TypeReference<HashMap<Long,T>> typeReference) {
         try {
             String json = Files.readString(path);
 
@@ -66,4 +65,5 @@ public class FileService {
         Files.deleteIfExists(path);
         Files.createFile(path);
     }
+
 }

@@ -5,7 +5,7 @@ import com.example.homework6februar.model.Recipe;
 import com.example.homework6februar.service.FileService;
 import com.example.homework6februar.service.RecipeService;
 import com.example.homework6februar.service.ValidationService;
-import org.springframework.asm.TypeReference;
+import com.fasterxml.jackson.core.type.TypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -73,12 +73,12 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public void uploadFile(MultipartFile file) throws IOException {
         fileService.uploadFile(file, recipesPath);
-        recipes = fileService.readMapFromFile(recipesPath, new TypeReference<HashMap<Long, Recipe>>() {});
+        recipes = fileService.readMapFromFile(recipesPath, new org.springframework.asm.TypeReference<HashMap<Long, Recipe>>() {});
     }
 
     @PostConstruct
     private void init() {
-        recipesPath = Path.of(recipesFilePath, recipesFileName);
-        recipes = fileService.readMapFromFile(recipesPath, new TypeReference<HashMap<Long, Recipe>>() {});
+        recipesPath = Path.of(recipesFilePath,recipesFileName);
+        recipes = fileService.readMapFromFile(recipesPath, new com.fasterxml.jackson.core.type.TypeReference<HashMap<Long, Recipe>>() {});
     }
 }
