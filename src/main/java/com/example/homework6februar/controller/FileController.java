@@ -1,7 +1,7 @@
-package controller;
+package com.example.homework6februar.controller;
 
-import annotation.Operation;
-import annotation.Tag;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -9,8 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import service.IngredientService;
-import service.RecipeService;
+import com.example.homework6februar.service.IngredientService;
+import com.example.homework6februar.service.RecipeService;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -29,7 +29,7 @@ public class FileController {
 
     @GetMapping("/recipe/export")
     @Operation(
-            summary = "выгрузка файлов рецептов"
+            summary = "Выгрузка файлов рецептов"
     )
     public ResponseEntity<InputStreamResource> downloadRecipesFiles() {
         try {
@@ -51,7 +51,7 @@ public class FileController {
 
     @PostMapping(value = "/recipe/import", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(
-            summary = "загрузка файлов ингридиентов")
+            summary = "Загрузка файлов ингридиентов")
 
     public ResponseEntity<String> uploadRecipesFile(@RequestParam MultipartFile file) {
         try {

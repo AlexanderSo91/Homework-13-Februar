@@ -1,12 +1,11 @@
-package controller;
+package com.example.homework6februar.controller;
 
-
-import annotation.Operation;
-import annotation.Tag;
-import model.Ingredient;
+import com.example.homework6februar.model.Ingredient;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import service.IngredientService;
+import com.example.homework6februar.service.IngredientService;
 
 import java.util.Map;
 

@@ -1,4 +1,4 @@
-package service;
+package com.example.homework6februar.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -42,6 +42,9 @@ public class FileService {
             return objectMapper.readValue(json, typeReference);
         } catch (JsonMappingException e) {
             return new HashMap<>();
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

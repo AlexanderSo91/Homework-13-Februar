@@ -1,9 +1,12 @@
-package service;
+package com.example.homework6februar.service.impl;
 
-import exception.ValidationException;
-import model.Ingredient;
-import model.Recipe;
-import org.springframework.asm.TypeReference;
+import com.example.homework6februar.exception.ValidationException;
+import com.example.homework6februar.model.Ingredient;
+import com.example.homework6februar.model.Recipe;
+import com.example.homework6februar.service.FileService;
+import com.example.homework6februar.service.IngredientService;
+import com.example.homework6februar.service.ValidationService;
+import com.fasterxml.jackson.core.type.TypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,7 +16,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -23,10 +25,10 @@ public class IngredientServiceImpl implements IngredientService {
     private Map<Long, Ingredient> ingredients = new HashMap<>();
     private final ValidationService validationService;
     private Path ingredientPath;
-    private FileService fileService;
+    private FileService fileService ;
     private String ingredientsFilePath;
     private String ingredientsFileName;
-
+    private Path recipesPath;
 
 
     public IngredientServiceImpl(ValidationService validationService) {
@@ -73,13 +75,13 @@ public class IngredientServiceImpl implements IngredientService {
         @Override
         public void uploadFile(MultipartFile file) throws IOException {
             fileService.uploadFile(file, ingredientPath);
-            ingredients = fileService.readMapFromFile(ingredientPath, new TypeReference<HashMap<Long, Recipe>>() {});
-    }
+            ingredients = fileService.readMapFromFile(recipesPath,new TypeReference<HashMap<Long, Recipe>>() {});
+        }
 
     @PostConstruct
     private void init(){
         ingredientPath = Path.of(ingredientsFilePath, ingredientsFileName);
-        ingredients = fileService.readMapFromFile(ingredients, new TypeReference<HashMap<Long, Recipe>>() {});
+        ingredients = fileService.readMapFromFile(ingredients, new TypeReference<HashMap<Long,ingredient>>(){});
 
 
     }
